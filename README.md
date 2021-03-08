@@ -45,7 +45,7 @@ Usage of `MrHAMER` is as following:
            
 7. Demultiplexing of reads processed with Porechop and filtered with Filtlong, and filtering for minimum number of repetitive units per single molecule concatemer:
 
-        python2 ./qfilesplitterV3.1.py -i <sequences> -o <output path> -b <min. number of repetitive units>
+        python2 ./qfilesplitterV3.1.py -i <filtlong.output> -o <output path> -b <min. number of repetitive units>
 
         python qfilespliter.py [Arguments]
         
