@@ -2,7 +2,7 @@
 
 [![Available in bioRxiv](https://img.shields.io/badge/Available%20in-bioRxiv-red)](https://www.biorxiv.org/content/10.1101/2021.01.27.428469v1)
 
-Scripts for the generation of high accuracy single molecule Nanopore reads generated using the MrHAMER pipeline (https://www.biorxiv.org/content/10.1101/2021.01.27.428469v1)
+Scripts for the generation of high accuracy single molecule Nanopore reads using the MrHAMER pipeline (https://www.biorxiv.org/content/10.1101/2021.01.27.428469v1)
 
 ## Dependencies
 
