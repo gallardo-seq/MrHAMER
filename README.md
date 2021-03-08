@@ -37,10 +37,13 @@ Usage of `MrHAMER` is as following:
 1. Combine all sequencing reads into single fastq file
 2. Use Porechop to segment the concatemers based on the presence of MrHAMER hairpin sequence (this requires a custom adapters.py file, a template file is included in this repository)
 
-    porechop -i <combined.fastq> -o <porechop.output> -t <threads> --extra_middle_trim_bad_side 0 --extra_middle_trim_good_side 0
+        porechop -i [combined.fastq] -o [porechop.output] -t [threads] --extra_middle_trim_bad_side 0 --extra_middle_trim_good_side 0
 
-4. Filter porechop.output with Filtlong, with --min_length 4000
-5. Demultiplexing of reads processed with Porechop and filtered with Filtlong, and filtering for minimum number of repetitive units per single molecule concatemer:
+4. Filter porechop.output with Filtlong
+           
+        filtlong --min_length 4000 [porechop.output] > [filtlong.output]
+           
+7. Demultiplexing of reads processed with Porechop and filtered with Filtlong, and filtering for minimum number of repetitive units per single molecule concatemer:
 
         python2 ./qfilesplitterV3.1.py -i <sequences> -o <output path> -b <min. number of repetitive units>
 
