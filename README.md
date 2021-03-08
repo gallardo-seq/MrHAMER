@@ -58,7 +58,7 @@ Usage of `MrHAMER` is as following:
 
 ## Contact information
 
-For additional information, help and bug reports please send an email to 
+For additional information, help and bug reports please send an email to christian.gallardo@seattlechildrens.org
 
 ## Acknowledgment
 
