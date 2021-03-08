@@ -1,4 +1,4 @@
-# MrHAMER
+# MrHAMER (Multi-read Hairpin Mediated Error-correction Reaction)
 
 [![Available in bioRxiv](https://img.shields.io/badge/Available%20in-bioRxiv-red)](https://www.biorxiv.org/content/10.1101/2021.01.27.428469v1)
 
