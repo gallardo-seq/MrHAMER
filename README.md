@@ -26,7 +26,7 @@ We recommend installing in a Python or Conda environment to ensure recommended v
 To install these MrHAMER scripts run the following commands:
 
 ```bash
-git clone --recursive https://github.com/gallardo-seq/MrHAMER.git racon
+git clone --recursive https://github.com/gallardo-seq/MrHAMER.git
 ```
 
 After successful downloading of the scripts, a folder named `MrHAMER` will appear in current working directory.
