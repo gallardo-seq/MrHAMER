@@ -27,11 +27,7 @@ To install these MrHAMER scripts run the following commands:
 
 ```bash
 git clone --recursive https://github.com/gallardo-seq/MrHAMER.git racon
-cd racon
-mkdir build
-cd build
-cmake -DCMAKE_BUILD_TYPE=Release ..
-make
+cd MrHAMER
 ```
 
 After successful installation, an executable named `racon` will appear in `build/bin`.
