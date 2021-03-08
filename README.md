@@ -1,26 +1,32 @@
 # MrHAMER
 
-[![Published in bioRxiv](https://img.shields.io/badge/Available%20in-bioRxiv-red)](https://www.biorxiv.org/content/10.1101/2021.01.27.428469v1)
+[![Available in bioRxiv](https://img.shields.io/badge/Available%20in-bioRxiv-red)](https://www.biorxiv.org/content/10.1101/2021.01.27.428469v1)
 
 Scripts for the generation of high accuracy single molecule Nanopore reads generated using the MrHAMER pipeline (https://www.biorxiv.org/content/10.1101/2021.01.27.428469v1)
 
-## Description
-
-Description Here
-
 ## Dependencies
 
-Pipeline is compatible with Ubuntu, but might be adapted to MacOS by building
+We recommend installing in a Python or Conda environment to ensure recommended versions are installed. Pipeline is compatible with Ubuntu 16 and 18 LTS.
 
 1. Python 2.7.12
 2. Python 3.5.2
-3.
+3. Guppy basecaller v3.6.0
+4. Porechop v0.2.4
+5. Filtlong v0.2.0
+6. minimap2 v2.17-r954-dirty
+7. Racon v1.4.3
+8. samtools v1.9 (with htslib 1.9)
+9. Medaka v1.0.1
+10. Pomoxis v0.2.3
+11. CoVaMa v0.7
+12. MAFFT v7.471
+13. CliqueSNV v1.5.4
 
 ## Installation
 To install these MrHAMER scripts run the following commands:
 
 ```bash
-git clone --recursive https://github.com/lbcb-sci/racon.git racon
+git clone --recursive https://github.com/gallardo-seq/MrHAMER.git racon
 cd racon
 mkdir build
 cd build
