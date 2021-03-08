@@ -34,7 +34,13 @@ After successful downloading of the scripts, a folder named `MrHAMER` will appea
 ## Usage
 Usage of `MrHAMER` is as following:
 
-Demultiplexing of reads processed with Porechop, and filtering for minimum number of repetitive units per single molecule concatemer:
+1. Combine all sequencing reads into single fastq file
+2. Use Porechop to segment the concatemers based on the presence of MrHAMER hairpin sequence (this requires a custom adapters.py file, a template file is included in this repository)
+
+    porechop -i <combined.fastq> -o <porechop.output> -t <threads> --extra_middle_trim_bad_side 0 --extra_middle_trim_good_side 0
+
+4. Filter porechop.output with Filtlong, with --min_length 4000
+5. Demultiplexing of reads processed with Porechop and filtered with Filtlong, and filtering for minimum number of repetitive units per single molecule concatemer:
 
     python2 ./qfilesplitterV3.1.py -i <sequences> -o <output path> -b <min. number of repetitive units>
 
@@ -49,8 +55,8 @@ Demultiplexing of reads processed with Porechop, and filtering for minimum numbe
 
 ## Contact information
 
-For additional information, help and bug reports please send an email to one of the following: ivan.sovic@irb.hr, robert.vaser@fer.hr, mile.sikic@fer.hr, nagarajann@gis.a-star.edu.sg
+For additional information, help and bug reports please send an email to 
 
 ## Acknowledgment
 
-This work has been supported in part by Croatian Science Foundation under the project UIP-11-2013-7353. IS is supported in part by the Croatian Academy of Sciences and Arts under the project "Methods for alignment and assembly of DNA sequences using nanopore sequencing data". NN is supported by funding from A*STAR, Singapore.
+This work was supported by the National Institute of Allergy and Infectious Diseases [U54AI150472 to BET and ALR, P30AI036214-26 to BET, SJL and DMS]; the National Human Genome Research Institute [R01HG009622 to BET]; the Scripps Translational Science Institute [UL1TR001114-03 to BET]; and the University of Texas System Rising STARs Award to ALR.
