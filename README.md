@@ -54,8 +54,21 @@ Usage of `MrHAMER` is as following:
             -o output path
             -b blocks size cutoff [optional]
 
-5. 
+5. Running parallel instances of minimap2 > racon > medaka to polish each FASTQ file, resulting in high accuracy single molecule sequences. This step has been optimized for a system running 40 threads.
+
+        python3 protocolV3.3.py -q [path to output folder from previous step] -r [path to reference sequence] -m r941_min_high_g360
         
+        python protocol.py [Arguments]
+        
+        Arguments:
+        -q fastq files
+        -r reference
+        -n number of iterations [Default 1]
+        -m model for medaka [Default r941_min_high]
+
+6. High accuracy single molecule sequences are output in new directory called "medaka_output", with high accuracy single molecule sequences concatenated in a single medaka_consensus.fasta file within this directory.
+
+**A note about reference sequence used for Step 5. This pipeline is optimized for reference-based alignment. For a de-novo based approach, the outputs of Step 4 can be used with the "medaka smolecule" module, which used SPOA to generate a reference assembly for each originating FASTQ file (https://github.com/nanoporetech/medaka). 
 
 ## Contact information
 
