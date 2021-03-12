@@ -65,6 +65,8 @@ Usage of `MrHAMER` is as following:
         -r reference
         -n number of iterations [Default 1]
         -m model for medaka [Default r941_min_high]
+        -noMedaka if the parameter is present exclude medaka from the process
+        -noRacon if the parameter is present exclude racon from the process
 
 6. High accuracy single molecule sequences are output in new directory called "medaka_output", with high accuracy single molecule sequences concatenated in a single medaka_consensus.fasta file within this directory.
 
