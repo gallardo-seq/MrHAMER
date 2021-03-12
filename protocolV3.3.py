@@ -19,14 +19,16 @@ files = []
 currentPath = ""
 xc = 0
 rc = 0
-
+IsMedaka = True
+IsRacon = True
 cores = 2
 
 def print_command(arrCommand):
     strCommandData = ""
     for elm in arrCommand:
         strCommandData += elm+" "
-    print (strCommandData)
+    print(strCommandData)
+
 
 def parse_config_file(filecontent):
     global xc,rc
@@ -46,6 +48,7 @@ def read_config_file():
             parse_config_file(f.readlines())
     except Exception as e:
         print ("No config file found loadings default parameters {}".format(e))	
+
 
 def get_fastqFiles():
     currentPath = os.getcwd()
@@ -76,13 +79,16 @@ def minimap_command(fileName, iteration):
 
 
 def minimap_samtools_command_for_medaka(fileName, iteration):
-
     outputConcensusFile = "{}consensus".format(fastqPath)
+    print(iteration)
     if iteration > 1:
         reference = "{}/{}_consensus{}.fasta".format(outputConcensusFile, str(files[i])[:-6], iteration-1)
     else:
-        reference = referencePath
+        reference = "{}/{}_consensus{}.fasta".format(outputConcensusFile, str(files[i])[:-6], iteration)
+    print (reference)
 
+    if not IsRacon:
+        reference = referencePath
     #if not medaka_quality_filiter("{}/{}_consensus{}.fasta".format(outputConcensusFile, str(fileName)[:-6], n)):
     #    return "Quality fail"
 
@@ -132,7 +138,10 @@ def racon_command(fileName, iteration):
         reference = referencePath
 
     strCommandName = "racon"
-    arrCommand = [strCommandName, "-m 8 -x -6 -g -8 -w 500" , "{}{}".format(fastqPath, fileName), "{}{}_contig{}.paf".format(outputMinmapFile, str(fileName)[:-6], iteration), reference]
+    arrCommand = [strCommandName, "-m 8 -x -6 -g -8 -w 500",
+                  "{}{}".format(fastqPath, fileName),
+                  "{}{}_contig{}.paf".format(outputMinmapFile, str(fileName)[:-6],
+                                             iteration ), reference]
 
     print_command(arrCommand)
 
@@ -198,6 +207,7 @@ def medaka_stich_command(fileName):
     changeFastaHeader(OutputFile)
     return o.decode('ascii')
 
+
 def changeFastaHeader(fileName):
 	content = []
 	if os.path.isfile(fileName):
@@ -224,7 +234,7 @@ def combine_outputs():
     print_command(arrCommand)
     proc = subprocess.Popen(arrCommand, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     o, e = proc.communicate()
-    print  (e.decode('ascii'))
+    print(e.decode('ascii'))
     return o.decode('ascii')
 
 
@@ -300,16 +310,17 @@ def process():
 
     for iteration in range(0, n):
         with closing(Pool(processes=cores)) as pool:
-            outputMinmap = pool.map(partial(minimap_command,iteration=(iteration+1)), files, 1)
+            outputMinmap = pool.map(partial(minimap_command, iteration=(iteration+1)), files, 1)
             pool.terminate()
         write_files_minimap(outputMinmap, iteration+1)
 
-        with closing(Pool(processes=cores)) as pool:
-            outputRacon = pool.map(partial(racon_command,iteration=(iteration+1)), files, 1)
-            pool.terminate()
-        write_files_racon(outputRacon, iteration+1)
-
-    medaka_process()
+        if IsRacon:
+            with closing(Pool(processes=cores)) as pool:
+                outputRacon = pool.map(partial(racon_command, iteration=(iteration+1)), files, 1)
+                pool.terminate()
+            write_files_racon(outputRacon, iteration+1)
+    if IsMedaka:
+        medaka_process()
 
 
 read_config_file()
@@ -323,6 +334,11 @@ if len(sys.argv) > 1:
             n = int (sys.argv[i + 1])
         elif sys.argv[i] == "-m":
             medaka_model = sys.argv[i + 1]
+        elif sys.argv[i] == "-noMedaka":
+            IsMedaka = False
+        elif sys.argv[i] == "-noRacon":
+            IsRacon= False
+
 
     start_time = time.time()
     process()
@@ -337,6 +353,8 @@ else:
         Arguments:
         -q fastq files
         -r reference
-	-n number of iterations [Default 1]
-	-m model for medaka [Default r941_min_high]       
+	    -n number of iterations [Default 1]
+	    -m model for medaka [Default r941_min_high]
+	    -noMedaka if the parameter is present exclude medaka from the process
+	    -noRacon if the parameter is present exclude racon from the process
 """)
