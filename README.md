@@ -1,8 +1,8 @@
-# MrHAMER (Multi-read Hairpin Mediated Error-correction Reaction)
+<p align="center"><img src="/MrHAMER_logo.png" alt="MrHAMER" width="500"></p>
 
-[![Available in bioRxiv](https://img.shields.io/badge/Available%20in-bioRxiv-red)](https://www.biorxiv.org/content/10.1101/2021.01.27.428469v1)
+[![Published in Nucleic Acids Research](https://img.shields.io/badge/Published%20in-Nucleic%20Acids%20Research-4aa256)](https://doi.org/10.1093/nar/gkab231)
 
-Scripts for the generation of high accuracy single molecule Nanopore reads using the MrHAMER pipeline (https://www.biorxiv.org/content/10.1101/2021.01.27.428469v1)
+Scripts for the generation of high accuracy single molecule Nanopore reads using the MrHAMER pipeline (Multi-read Hairpin Mediated Error-correction Reaction)
 
 ## Dependencies
 
